@@ -226,8 +226,18 @@
           </div>
           <label>
             <span>Maklum balas</span>
-            <textarea name="message" rows="5" placeholder="Tulis mesej anda di sini..." required></textarea>
+            <textarea id="feedback-message" name="message" rows="5" placeholder="Tulis mesej anda di sini..." required></textarea>
           </label>
+          <div class="emoji-toolbar" aria-label="Pilih emoji untuk feedback">
+            <button type="button" data-emoji="👍">👍</button>
+            <button type="button" data-emoji="👏">👏</button>
+            <button type="button" data-emoji="🔥">🔥</button>
+            <button type="button" data-emoji="✨">✨</button>
+            <button type="button" data-emoji="💡">💡</button>
+            <button type="button" data-emoji="🚀">🚀</button>
+            <button type="button" data-emoji="😊">😊</button>
+            <button type="button" data-emoji="⭐">⭐</button>
+          </div>
           <button class="button primary" type="submit">Hantar Feedback</button>
           <p class="form-note" id="feedback-note" aria-live="polite">
             Form ini akan buka email client anda dengan mesej yang sudah disediakan.
