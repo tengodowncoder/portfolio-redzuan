@@ -38,6 +38,8 @@ function stars(value) {
 
 function formatDetailText(value) {
   const normalized = String(value || "")
+    .replace(/•\s*(UI Components|Audit Trail)\s*:\s*/g, "\n$1\n")
+    .replace(/^\s*:\s*/gm, "")
     .replace(/\s+•\s+/g, "\n• ")
     .replace(/\s+(\d+\.\s+Modul)/g, "\n$1")
     .replace(/\s+(Objektif Sistem|Teknologi Digunakan|UI Components|Audit Trail|Modul Utama Sistem)\s*/g, "\n$1\n")
@@ -50,8 +52,13 @@ function formatDetailText(value) {
     .map((line) => {
       const cleanLine = line.trim();
 
+      if (!cleanLine || cleanLine === "•" || cleanLine === "-") {
+        return "";
+      }
+
       if (cleanLine.startsWith("•")) {
-        return `<li>${escapeHtml(cleanLine.slice(1).trim())}</li>`;
+        const item = cleanLine.slice(1).trim();
+        return item ? `<li>${escapeHtml(item)}</li>` : "";
       }
 
       if (/^\d+\.\s+Modul/.test(cleanLine)) {

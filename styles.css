@@ -916,6 +916,11 @@ h3 {
   border-top: 1px solid var(--line);
 }
 
+.modal-detail h3,
+.modal-comments h3 {
+  margin-bottom: 16px;
+}
+
 .modal-detail p,
 .empty-comments,
 .comment-item p {
@@ -924,7 +929,7 @@ h3 {
 
 .rich-detail {
   display: grid;
-  gap: 12px;
+  gap: 16px;
   color: var(--muted);
 }
 
@@ -934,7 +939,7 @@ h3 {
 }
 
 .rich-detail h4 {
-  margin: 8px 0 0;
+  margin: 12px 0 0;
   color: var(--ink);
   font-size: 1rem;
   line-height: 1.25;
