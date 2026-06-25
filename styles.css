@@ -132,10 +132,10 @@ img {
   inset: 0 0 0 auto;
   width: min(54rem, 58vw);
   background:
-    linear-gradient(90deg, rgba(251, 248, 241, 0.32), rgba(251, 248, 241, 0)),
-    url("assets/profile-hero.jpg") center top / cover no-repeat;
-  opacity: 0.88;
-  filter: saturate(0.82) contrast(0.98);
+    radial-gradient(circle at 62% 42%, rgba(23, 190, 187, 0.18), transparent 34%),
+    url("assets/profile-hero-cutout.png") center bottom / auto 106% no-repeat;
+  opacity: 0.94;
+  filter: saturate(0.92) contrast(1);
 }
 
 .hero::before {
@@ -1046,10 +1046,10 @@ h3 {
 
   .hero::after {
     width: 100%;
-    opacity: 0.24;
+    opacity: 0.2;
     background:
-      linear-gradient(180deg, rgba(251, 248, 241, 0.36), rgba(251, 248, 241, 0.9)),
-      url("assets/profile-hero.jpg") right top / min(34rem, 92vw) auto no-repeat;
+      linear-gradient(180deg, rgba(251, 248, 241, 0.2), rgba(251, 248, 241, 0.9)),
+      url("assets/profile-hero-cutout.png") right bottom / min(30rem, 92vw) auto no-repeat;
   }
 
   .project-grid,
