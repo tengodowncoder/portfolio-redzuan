@@ -349,8 +349,15 @@ h3 {
   object-position: center;
 }
 
-.project-shot.automation {
-  background-color: #edf1e6;
+.project-shot.automation-preview {
+  background:
+    radial-gradient(circle at 16% 18%, rgba(23, 190, 187, 0.2), transparent 22%),
+    linear-gradient(135deg, #c7e8e3 0%, #dbe6cf 55%, #ffe4ad 100%);
+}
+
+.project-shot.automation-preview img {
+  object-fit: cover;
+  object-position: center;
 }
 
 .project-shot.portfolio-preview {
