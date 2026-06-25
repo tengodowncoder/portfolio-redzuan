@@ -36,6 +36,38 @@ function stars(value) {
     .join("");
 }
 
+function formatDetailText(value) {
+  const normalized = String(value || "")
+    .replace(/\s+•\s+/g, "\n• ")
+    .replace(/\s+(\d+\.\s+Modul)/g, "\n$1")
+    .replace(/\s+(Objektif Sistem|Teknologi Digunakan|UI Components|Audit Trail|Modul Utama Sistem)\s*/g, "\n$1\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  return normalized
+    .split(/\n+/)
+    .filter(Boolean)
+    .map((line) => {
+      const cleanLine = line.trim();
+
+      if (cleanLine.startsWith("•")) {
+        return `<li>${escapeHtml(cleanLine.slice(1).trim())}</li>`;
+      }
+
+      if (/^\d+\.\s+Modul/.test(cleanLine)) {
+        return `<h4>${escapeHtml(cleanLine)}</h4>`;
+      }
+
+      if (/^(Objektif Sistem|Teknologi Digunakan|UI Components|Audit Trail|Modul Utama Sistem)$/.test(cleanLine)) {
+        return `<h4>${escapeHtml(cleanLine)}</h4>`;
+      }
+
+      return `<p>${escapeHtml(cleanLine)}</p>`;
+    })
+    .join("")
+    .replace(/(<li>.*?<\/li>)+/gs, (items) => `<ul>${items}</ul>`);
+}
+
 function renderComments(projectId) {
   const comments = readComments()[projectId] || [];
 
@@ -83,7 +115,7 @@ function openProjectModal(projectId) {
     </div>
     <div class="modal-detail">
       <h3>Detail penuh</h3>
-      <p>${escapeHtml(project.details || project.description)}</p>
+      <div class="rich-detail">${formatDetailText(project.details || project.description)}</div>
     </div>
     <div class="modal-comments">
       <h3>Feedback visitor</h3>

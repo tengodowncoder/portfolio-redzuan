@@ -616,6 +616,11 @@ h3 {
   resize: vertical;
 }
 
+.details-textarea {
+  min-height: 260px;
+  line-height: 1.7;
+}
+
 .feedback-form input:focus,
 .feedback-form textarea:focus,
 .feedback-form select:focus {
@@ -915,6 +920,34 @@ h3 {
 .empty-comments,
 .comment-item p {
   color: var(--muted);
+}
+
+.rich-detail {
+  display: grid;
+  gap: 12px;
+  color: var(--muted);
+}
+
+.rich-detail p,
+.rich-detail ul {
+  margin: 0;
+}
+
+.rich-detail h4 {
+  margin: 8px 0 0;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.rich-detail ul {
+  display: grid;
+  gap: 8px;
+  padding-left: 20px;
+}
+
+.rich-detail li {
+  padding-left: 4px;
 }
 
 .comment-item {
