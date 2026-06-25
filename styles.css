@@ -519,41 +519,10 @@ h3 {
   text-transform: uppercase;
 }
 
-.project-card-bottom {
-  margin-top: auto;
-  padding-top: 18px;
-}
-
 .tags {
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 12px;
-}
-
-.rating-summary {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-  margin-top: 0;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fbfdfb;
-}
-
-.rating-summary.empty {
-  color: var(--muted);
-}
-
-.rating-summary strong {
-  color: var(--ink);
-  font-size: 0.95rem;
-}
-
-.rating-summary small {
-  color: var(--muted);
-  font-weight: 750;
+  margin-top: 18px;
 }
 
 .rating-stars span {
