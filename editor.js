@@ -28,6 +28,7 @@ function projectFromForm() {
     type: String(formData.get("type") || "").trim(),
     title,
     description: String(formData.get("description") || "").trim(),
+    details: String(formData.get("details") || "").trim(),
     tags: String(formData.get("tags") || "")
       .split(",")
       .map((tag) => tag.trim())
@@ -49,6 +50,7 @@ function fillForm(project) {
   form.elements.type.value = project?.type || "";
   form.elements.title.value = project?.title || "";
   form.elements.description.value = project?.description || "";
+  form.elements.details.value = project?.details || "";
   form.elements.tags.value = (project?.tags || []).join(", ");
   form.elements.imageFit.value = project?.imageFit || "contain";
   imageUpload.value = "";

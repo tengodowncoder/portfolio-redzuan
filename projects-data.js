@@ -120,7 +120,14 @@ function projectCardTemplate(project) {
   `;
 }
 
+function normalizeProject(project) {
+  return {
+    ...project,
+    details: project.details || project.description || "",
+  };
+}
+
 function renderProjectGrid(target, projects = readStoredProjects()) {
   if (!target) return;
-  target.innerHTML = projects.map(projectCardTemplate).join("");
+  target.innerHTML = projects.map(normalizeProject).map(projectCardTemplate).join("");
 }
