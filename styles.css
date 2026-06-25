@@ -208,22 +208,50 @@ h3 {
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
   margin: 0 clamp(18px, 4vw, 64px);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--line);
+  gap: 14px;
+  overflow: visible;
+  border: 0;
+  background: transparent;
 }
 
 .stats div {
-  padding: 26px;
-  background: var(--surface);
+  position: relative;
+  min-height: 142px;
+  padding: 28px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(238, 245, 239, 0.78)),
+    var(--surface);
+  box-shadow: 0 18px 48px rgba(23, 32, 51, 0.08);
+}
+
+.stats div::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--teal), var(--coral));
+}
+
+.stats div::after {
+  content: "";
+  position: absolute;
+  right: -34px;
+  top: -34px;
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  background: rgba(23, 190, 187, 0.12);
 }
 
 .stats strong {
+  position: relative;
   display: block;
   font-size: clamp(2rem, 2.8rem, 3.2rem);
+  font-weight: 950;
   line-height: 1;
 }
 
@@ -234,6 +262,13 @@ h3 {
 .timeline p,
 .contact p {
   color: var(--muted);
+}
+
+.stats span {
+  position: relative;
+  display: block;
+  margin-top: 8px;
+  font-weight: 750;
 }
 
 .section {
