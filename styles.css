@@ -322,18 +322,21 @@ h3 {
 
 .project-shot.screenshot span {
   display: inline-flex;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 24px;
+  width: min(68%, 238px);
+  min-height: 30px;
   align-items: center;
+  justify-content: center;
   padding: 4px 12px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.92);
   color: var(--ink);
-  font-size: 0.78rem;
-  font-weight: 850;
+  font-size: 0.72rem;
+  font-weight: 900;
   line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
   overflow-wrap: anywhere;
+  box-shadow: 0 10px 24px rgba(23, 32, 51, 0.08);
 }
 
 .project-shot.screenshot figure {
