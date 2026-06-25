@@ -121,14 +121,36 @@ img {
   padding: clamp(48px, 7rem, 96px) clamp(18px, 4rem, 64px) clamp(28px, 5rem, 70px);
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(251, 248, 241, 0.98) 0%, rgba(251, 248, 241, 0.86) 44%, rgba(251, 248, 241, 0.18) 100%),
-    url("assets/portfolio-visual.svg") right center / min(66rem, 82vw) auto no-repeat,
+    linear-gradient(90deg, rgba(251, 248, 241, 1) 0%, rgba(251, 248, 241, 0.9) 43%, rgba(251, 248, 241, 0.2) 100%),
+    linear-gradient(135deg, rgba(23, 190, 187, 0.16), rgba(255, 207, 90, 0.18)),
     #fbf8f1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: min(54rem, 58vw);
+  background:
+    linear-gradient(90deg, rgba(251, 248, 241, 0.32), rgba(251, 248, 241, 0)),
+    url("assets/profile-hero.jpg") center top / cover no-repeat;
+  opacity: 0.88;
+  filter: saturate(0.82) contrast(0.98);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 34%;
+  background: linear-gradient(0deg, rgba(251, 248, 241, 0.96), rgba(251, 248, 241, 0));
+  pointer-events: none;
+  z-index: 1;
 }
 
 .hero-copy {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 680px;
 }
 
@@ -1019,8 +1041,15 @@ h3 {
     min-height: auto;
     background:
       linear-gradient(180deg, rgba(251, 248, 241, 0.96), rgba(251, 248, 241, 0.82)),
-      url("assets/portfolio-visual.svg") right bottom / 54rem auto no-repeat,
       #fbf8f1;
+  }
+
+  .hero::after {
+    width: 100%;
+    opacity: 0.24;
+    background:
+      linear-gradient(180deg, rgba(251, 248, 241, 0.36), rgba(251, 248, 241, 0.9)),
+      url("assets/profile-hero.jpg") right top / min(34rem, 92vw) auto no-repeat;
   }
 
   .project-grid,
