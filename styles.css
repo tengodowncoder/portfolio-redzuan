@@ -361,7 +361,18 @@ h3 {
     linear-gradient(135deg, #c7e8e3 0%, #dbe6cf 55%, #ffe4ad 100%);
 }
 
+.project-shot.vehicle-preview {
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 107, 74, 0.18), transparent 24%),
+    linear-gradient(135deg, #c7e8e3 0%, #dbe6cf 55%, #ffe4ad 100%);
+}
+
 .project-shot.myclaim-preview img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.project-shot.vehicle-preview img {
   object-fit: contain;
   object-position: center;
 }
