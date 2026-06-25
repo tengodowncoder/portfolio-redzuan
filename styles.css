@@ -1078,6 +1078,13 @@ h3 {
   padding-left: 4px;
 }
 
+.rich-detail a {
+  color: var(--teal);
+  font-weight: 850;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .comment-item {
   display: grid;
   gap: 8px;

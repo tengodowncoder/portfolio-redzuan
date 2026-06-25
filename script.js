@@ -138,6 +138,59 @@ function renderComments(projectId) {
     .join("");
 }
 
+function formatInlineDetail(value) {
+  return escapeHtml(value)
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>');
+}
+
+function formatFullProjectDetail(value) {
+  const headings =
+    "Objektif Sistem|Teknologi Digunakan|UI Components|Audit Trail|Modul Utama Sistem|Project Name|GitHub|Project Summary|Tech Stack|Project Description|Key Features|Tools & Technologies|Role & Responsibilities|Workflow|My Role|Portfolio Paragraph|Resume Bullet";
+  const headingPattern = new RegExp(`^(${headings})$`);
+  const normalized = String(value || "")
+    .replace(/\r/g, "")
+    .replace(/\*\*(.*?)\*\*/g, "\n$1\n")
+    .replace(/(?:â€¢|•)\s*(UI Components|Audit Trail)\s*:\s*/g, "\n$1\n")
+    .replace(/^\s*:\s*/gm, "")
+    .replace(/\s+(?:â€¢|•)\s+/g, "\n• ")
+    .replace(/\s+(\d+\.\s+)/g, "\n$1")
+    .replace(new RegExp(`\\s+(${headings})\\s*`, "g"), "\n$1\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  return normalized
+    .split(/\n+/)
+    .filter(Boolean)
+    .map((line) => {
+      const cleanLine = line.trim();
+
+      if (
+        !cleanLine ||
+        cleanLine === "â€¢" ||
+        cleanLine === "•" ||
+        cleanLine === "-" ||
+        /^Boleh bro/i.test(cleanLine) ||
+        /^Ini versi/i.test(cleanLine)
+      ) {
+        return "";
+      }
+
+      if (cleanLine.startsWith("â€¢") || cleanLine.startsWith("•") || cleanLine.startsWith("- ")) {
+        const item = cleanLine.replace(/^(?:â€¢|•|-)\s*/, "").trim();
+        return item ? `<li>${formatInlineDetail(item)}</li>` : "";
+      }
+
+      if (/^\d+\.\s+/.test(cleanLine) || headingPattern.test(cleanLine.replace(/:$/, ""))) {
+        return `<h4>${formatInlineDetail(cleanLine.replace(/:$/, ""))}</h4>`;
+      }
+
+      return `<p>${formatInlineDetail(cleanLine)}</p>`;
+    })
+    .join("")
+    .replace(/(<li>.*?<\/li>)+/gs, (items) => `<ul>${items}</ul>`);
+}
+
 function openProjectModal(projectId) {
   const project = getProjectById(projectId);
   if (!project || !modal || !modalContent) return;
@@ -167,7 +220,7 @@ function openProjectModal(projectId) {
     </div>
     <div class="modal-detail">
       <h3>Detail penuh</h3>
-      <div class="rich-detail">${formatDetailText(project.details || project.description)}</div>
+      <div class="rich-detail">${formatFullProjectDetail(project.details || project.description)}</div>
     </div>
     <div class="modal-comments">
       <h3>Feedback visitor</h3>
