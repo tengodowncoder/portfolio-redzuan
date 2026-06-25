@@ -267,6 +267,25 @@ counters.forEach((counter) => counterObserver.observe(counter));
 
 const feedbackForm = document.querySelector("#feedback-form");
 const feedbackNote = document.querySelector("#feedback-note");
+const feedbackMessage = document.querySelector("#feedback-message");
+const emojiToolbar = document.querySelector(".emoji-toolbar");
+
+emojiToolbar?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-emoji]");
+  if (!button || !feedbackMessage) return;
+
+  const emoji = button.dataset.emoji || "";
+  const start = feedbackMessage.selectionStart;
+  const end = feedbackMessage.selectionEnd;
+  const value = feedbackMessage.value;
+  const spacer = start > 0 && value[start - 1] !== " " ? " " : "";
+  const insert = `${spacer}${emoji} `;
+
+  feedbackMessage.value = `${value.slice(0, start)}${insert}${value.slice(end)}`;
+  feedbackMessage.focus();
+  feedbackMessage.selectionStart = start + insert.length;
+  feedbackMessage.selectionEnd = start + insert.length;
+});
 
 feedbackForm?.addEventListener("submit", (event) => {
   event.preventDefault();
