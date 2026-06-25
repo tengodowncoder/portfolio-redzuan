@@ -664,6 +664,19 @@ h3 {
   margin-top: 14px;
 }
 
+.empty-preview {
+  display: grid;
+  min-height: 260px;
+  margin-top: 14px;
+  place-items: center;
+  padding: 24px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.64);
+  text-align: center;
+}
+
 .editor-list {
   margin-top: 48px;
 }

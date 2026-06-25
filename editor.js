@@ -1,5 +1,5 @@
 let projects = readStoredProjects();
-let selectedId = projects[0]?.id || "";
+let selectedId = "";
 let uploadedImage = "";
 
 const form = document.querySelector("#project-form");
@@ -17,14 +17,15 @@ function currentProject() {
 
 function projectFromForm() {
   const formData = new FormData(form);
+  const title = String(formData.get("title") || "").trim();
   return {
     id: String(formData.get("id") || `project-${Date.now()}`),
     badge: String(formData.get("badge") || "").trim(),
     image: uploadedImage || currentProject()?.image || "assets/portfolio-visual.svg",
-    imageAlt: String(formData.get("title") || "Project preview"),
+    imageAlt: title || "Project preview",
     imageFit: String(formData.get("imageFit") || "contain"),
     type: String(formData.get("type") || "").trim(),
-    title: String(formData.get("title") || "").trim(),
+    title,
     description: String(formData.get("description") || "").trim(),
     tags: String(formData.get("tags") || "")
       .split(",")
@@ -34,34 +35,37 @@ function projectFromForm() {
 }
 
 function populateSelect() {
-  projectSelect.innerHTML = projects
+  projectSelect.innerHTML = `<option value="">Tambah project baru</option>${projects
     .map((project) => `<option value="${escapeHtml(project.id)}">${escapeHtml(project.title)}</option>`)
-    .join("");
+    .join("")}`;
   projectSelect.value = selectedId;
 }
 
 function fillForm(project) {
-  if (!project) return;
   uploadedImage = "";
-  form.elements.id.value = project.id;
-  form.elements.badge.value = project.badge || "";
-  form.elements.type.value = project.type || "";
-  form.elements.title.value = project.title || "";
-  form.elements.description.value = project.description || "";
-  form.elements.tags.value = (project.tags || []).join(", ");
-  form.elements.imageFit.value = project.imageFit || "contain";
+  form.elements.id.value = project?.id || "";
+  form.elements.badge.value = project?.badge || "";
+  form.elements.type.value = project?.type || "";
+  form.elements.title.value = project?.title || "";
+  form.elements.description.value = project?.description || "";
+  form.elements.tags.value = (project?.tags || []).join(", ");
+  form.elements.imageFit.value = project?.imageFit || "contain";
   imageUpload.value = "";
   renderPreview();
 }
 
 function renderPreview() {
   const project = projectFromForm();
+  if (!project.title && !project.type && !project.badge && !project.description) {
+    preview.innerHTML = `<div class="empty-preview">Preview card akan muncul selepas anda mula isi form.</div>`;
+    return;
+  }
   preview.innerHTML = projectCardTemplate(project);
 }
 
 function renderAll() {
   populateSelect();
-  fillForm(currentProject());
+  fillForm(projects.find((project) => project.id === selectedId));
   renderProjectGrid(editorGrid, projects);
   highlightSelectedCard();
 }
@@ -107,7 +111,7 @@ function resizeImageFile(file) {
 
 projectSelect?.addEventListener("change", () => {
   selectedId = projectSelect.value;
-  fillForm(currentProject());
+  fillForm(projects.find((project) => project.id === selectedId));
 });
 
 form?.addEventListener("input", renderPreview);
@@ -141,35 +145,23 @@ form?.addEventListener("submit", (event) => {
 });
 
 newProjectButton?.addEventListener("click", () => {
-  const newProject = {
-    id: `project-${Date.now()}`,
-    badge: "New Project",
-    image: "assets/portfolio-visual.svg",
-    imageAlt: "New project preview",
-    imageFit: "contain",
-    type: "Project",
-    title: "Projek Baru",
-    description: "Tulis penerangan ringkas projek di sini.",
-    tags: ["Tag 1", "Tag 2"],
-  };
-
-  projects.push(newProject);
-  selectedId = newProject.id;
-  saveStoredProjects(projects);
-  renderAll();
+  selectedId = "";
+  populateSelect();
+  fillForm(null);
+  highlightSelectedCard();
 });
 
 deleteProjectButton?.addEventListener("click", () => {
-  if (projects.length <= 1) return;
+  if (!selectedId || projects.length <= 1) return;
   projects = projects.filter((project) => project.id !== selectedId);
-  selectedId = projects[0]?.id || "";
+  selectedId = "";
   saveStoredProjects(projects);
   renderAll();
 });
 
 resetButton?.addEventListener("click", () => {
   projects = structuredClone(defaultProjects);
-  selectedId = projects[0].id;
+  selectedId = "";
   saveStoredProjects(projects);
   renderAll();
 });
