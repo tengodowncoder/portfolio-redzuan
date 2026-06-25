@@ -353,8 +353,15 @@ h3 {
   background-color: #edf1e6;
 }
 
-.project-shot.portfolio {
-  background-color: #f0edf7;
+.project-shot.portfolio-preview {
+  background:
+    radial-gradient(circle at 16% 18%, rgba(23, 190, 187, 0.2), transparent 22%),
+    linear-gradient(135deg, #c7e8e3 0%, #dbe6cf 55%, #ffe4ad 100%);
+}
+
+.project-shot.portfolio-preview img {
+  object-fit: cover;
+  object-position: left top;
 }
 
 .project-content {
