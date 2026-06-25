@@ -395,6 +395,14 @@ h3 {
   object-position: center;
 }
 
+.project-shot.screenshot img.fit-cover {
+  object-fit: cover;
+}
+
+.project-shot.screenshot img.fit-contain {
+  object-fit: contain;
+}
+
 .project-shot.automation-preview {
   background:
     radial-gradient(circle at 16% 18%, rgba(23, 190, 187, 0.2), transparent 22%),
@@ -611,6 +619,64 @@ h3 {
   font-size: 0.94rem;
 }
 
+.editor-section h1 {
+  font-size: clamp(2.4rem, 4rem, 4.6rem);
+}
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+  gap: 18px;
+  align-items: start;
+}
+
+.editor-form select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px 14px;
+  color: var(--ink);
+  background: #fbfdfb;
+  font: inherit;
+}
+
+.editor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.editor-actions .button {
+  min-height: 44px;
+}
+
+.button.danger {
+  color: #9b1c1c;
+  border-color: #e6b8b8;
+}
+
+.editor-preview {
+  position: sticky;
+  top: 98px;
+}
+
+.editor-preview .project-card {
+  margin-top: 14px;
+}
+
+.editor-list {
+  margin-top: 48px;
+}
+
+.editor-nav {
+  align-items: center;
+}
+
+.editor-nav .button {
+  min-height: 40px;
+  padding: 8px 12px;
+}
+
 .contact {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -661,7 +727,8 @@ h3 {
 
 @media (max-width: 900px) {
   .split,
-  .contact {
+  .contact,
+  .editor-layout {
     grid-template-columns: 1fr;
   }
 
@@ -681,6 +748,10 @@ h3 {
 
   .contact-panel {
     width: 100%;
+  }
+
+  .editor-preview {
+    position: static;
   }
 }
 

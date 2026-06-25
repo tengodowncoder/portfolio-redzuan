@@ -1,5 +1,8 @@
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".site-nav");
+const projectGrid = document.querySelector("#project-grid");
+
+renderProjectGrid(projectGrid);
 
 navToggle?.addEventListener("click", () => {
   const isOpen = nav?.classList.toggle("open");

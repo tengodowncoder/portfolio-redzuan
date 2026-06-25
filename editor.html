@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project Card Editor | Syed Redzuan</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="projects-data.js"></script>
+    <script defer src="editor.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Kembali ke portfolio">
+        <span class="brand-mark">SRC</span>
+        <span>Project Card Editor</span>
+      </a>
+
+      <nav class="site-nav editor-nav" aria-label="Navigasi editor">
+        <a href="index.html#projects">Portfolio</a>
+        <button class="button secondary" id="reset-projects" type="button">Reset</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section editor-section">
+        <div class="section-heading">
+          <p class="eyebrow">Project Editor</p>
+          <h1>Edit dan tambah project card</h1>
+          <p>
+            Upload gambar, pilih cara fit, dan preview akan ikut saiz card portfolio.
+            Simpanan ini berada dalam browser anda.
+          </p>
+        </div>
+
+        <div class="editor-layout">
+          <form class="feedback-form editor-form" id="project-form">
+            <input type="hidden" name="id" />
+
+            <label>
+              <span>Pilih card untuk edit</span>
+              <select id="project-select"></select>
+            </label>
+
+            <div class="field-row">
+              <label>
+                <span>Badge atas</span>
+                <input name="badge" type="text" placeholder="Django Stack" required />
+              </label>
+              <label>
+                <span>Kategori</span>
+                <input name="type" type="text" placeholder="Django System" required />
+              </label>
+            </div>
+
+            <label>
+              <span>Tajuk projek</span>
+              <input name="title" type="text" placeholder="Nama projek" required />
+            </label>
+
+            <label>
+              <span>Penerangan</span>
+              <textarea name="description" rows="4" placeholder="Penerangan ringkas projek..." required></textarea>
+            </label>
+
+            <label>
+              <span>Tags</span>
+              <input name="tags" type="text" placeholder="Laravel, Supabase, RBAC" />
+            </label>
+
+            <div class="field-row">
+              <label>
+                <span>Upload gambar</span>
+                <input id="image-upload" type="file" accept="image/*" />
+              </label>
+              <label>
+                <span>Fit gambar</span>
+                <select name="imageFit">
+                  <option value="contain">Contain - semua nampak</option>
+                  <option value="cover">Cover - penuh frame</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="editor-actions">
+              <button class="button primary" type="submit">Simpan Card</button>
+              <button class="button secondary" id="new-project" type="button">Tambah Baru</button>
+              <button class="button secondary danger" id="delete-project" type="button">Buang Card</button>
+            </div>
+
+            <p class="form-note">
+              Nota: Untuk publish kepada semua orang, buat perubahan ini kemudian push file ke GitHub atau minta Codex bantu update source.
+            </p>
+          </form>
+
+          <aside class="editor-preview" aria-label="Preview project card">
+            <p class="eyebrow">Live Preview</p>
+            <div id="card-preview"></div>
+          </aside>
+        </div>
+
+        <div class="editor-list">
+          <div class="section-heading align-left">
+            <p class="eyebrow">All Cards</p>
+            <h2>Susunan semasa</h2>
+          </div>
+          <div class="project-grid" id="editor-project-grid"></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
