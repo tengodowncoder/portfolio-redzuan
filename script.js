@@ -16,6 +16,43 @@ function readComments() {
   }
 }
 
+function ratingStats(projectId) {
+  const comments = readComments()[projectId] || [];
+  const ratings = comments.map((comment) => Number(comment.rating)).filter(Boolean);
+
+  if (!ratings.length) {
+    return { count: 0, average: 0, percent: 0 };
+  }
+
+  const average = ratings.reduce((total, rating) => total + rating, 0) / ratings.length;
+  return {
+    count: ratings.length,
+    average,
+    percent: Math.round((average / 5) * 100),
+  };
+}
+
+window.getProjectRatingSummary = function getProjectRatingSummary(projectId) {
+  const stats = ratingStats(projectId);
+
+  if (!stats.count) {
+    return `
+      <div class="rating-summary empty">
+        <span class="rating-stars">${stars(0)}</span>
+        <strong>Belum ada rating</strong>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="rating-summary">
+      <span class="rating-stars">${stars(Math.round(stats.average))}</span>
+      <strong>${stats.percent}%</strong>
+      <small>${stats.average.toFixed(1)}/5 • ${stats.count} feedback</small>
+    </div>
+  `;
+};
+
 function saveComment(projectId, comment) {
   const comments = readComments();
   comments[projectId] = [...(comments[projectId] || []), comment];

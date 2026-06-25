@@ -525,6 +525,36 @@ h3 {
   margin-top: 18px;
 }
 
+.project-card-footer {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.rating-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfb;
+}
+
+.rating-summary.empty {
+  color: var(--muted);
+}
+
+.rating-summary strong {
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.rating-summary small {
+  color: var(--muted);
+  font-weight: 750;
+}
+
 .rating-stars span {
   color: #cad3cf;
 }

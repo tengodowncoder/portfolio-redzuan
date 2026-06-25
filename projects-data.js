@@ -111,6 +111,10 @@ function projectCardTemplate(project) {
     .map((tag) => `<span>${escapeHtml(tag)}</span>`)
     .join("");
   const fit = project.imageFit === "cover" ? "cover" : "contain";
+  const ratingHtml =
+    typeof window !== "undefined" && typeof window.getProjectRatingSummary === "function"
+      ? window.getProjectRatingSummary(project.id)
+      : "";
 
   return `
     <article class="project-card" data-project-id="${escapeHtml(project.id)}" tabindex="0" role="button" aria-label="Lihat detail ${escapeHtml(project.title)}">
@@ -125,6 +129,7 @@ function projectCardTemplate(project) {
         <h3>${escapeHtml(project.title)}</h3>
         <p>${escapeHtml(project.description)}</p>
         <div class="tags">${tags}</div>
+        <div class="project-card-footer">${ratingHtml}</div>
       </div>
     </article>
   `;
