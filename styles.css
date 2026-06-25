@@ -305,7 +305,7 @@ h3 {
 .project-shot.screenshot {
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 18px;
   height: 210px;
   min-height: 210px;
   padding: 22px;
@@ -334,7 +334,7 @@ h3 {
   height: 118px;
   min-height: 118px;
   margin: 0;
-  padding: 10px;
+  padding: 4px;
   overflow: hidden;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.94);
@@ -347,6 +347,7 @@ h3 {
   min-height: 0;
   object-fit: contain;
   object-position: center;
+  transform: scale(1.22);
 }
 
 .project-shot.automation {
