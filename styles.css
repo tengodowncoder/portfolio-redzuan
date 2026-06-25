@@ -630,6 +630,10 @@ h3 {
   align-items: start;
 }
 
+.editor-layout.is-hidden {
+  display: none;
+}
+
 .editor-form select {
   width: 100%;
   border: 1px solid var(--line);

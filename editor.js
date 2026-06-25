@@ -1,12 +1,14 @@
 let projects = readStoredProjects();
 let selectedId = "";
 let uploadedImage = "";
+let isEditing = false;
 
 const form = document.querySelector("#project-form");
 const projectSelect = document.querySelector("#project-select");
 const imageUpload = document.querySelector("#image-upload");
 const preview = document.querySelector("#card-preview");
 const editorGrid = document.querySelector("#editor-project-grid");
+const editorLayout = document.querySelector(".editor-layout");
 const deleteProjectButton = document.querySelector("#delete-project");
 const resetButton = document.querySelector("#reset-projects");
 
@@ -64,7 +66,6 @@ function renderPreview() {
 
 function renderAll() {
   populateSelect();
-  fillForm(projects.find((project) => project.id === selectedId));
   renderProjectGrid(editorGrid, projects);
   editorGrid?.insertAdjacentHTML(
     "beforeend",
@@ -75,6 +76,10 @@ function renderAll() {
     </article>`,
   );
   highlightSelectedCard();
+  editorLayout?.classList.toggle("is-hidden", !isEditing);
+  if (isEditing) {
+    fillForm(projects.find((project) => project.id === selectedId));
+  }
 }
 
 function highlightSelectedCard() {
@@ -117,8 +122,10 @@ function resizeImageFile(file) {
 }
 
 projectSelect?.addEventListener("change", () => {
+  isEditing = true;
   selectedId = projectSelect.value;
   fillForm(projects.find((project) => project.id === selectedId));
+  editorLayout?.classList.remove("is-hidden");
 });
 
 form?.addEventListener("input", renderPreview);
@@ -152,10 +159,12 @@ form?.addEventListener("submit", (event) => {
 });
 
 function startNewProject() {
+  isEditing = true;
   selectedId = "";
   populateSelect();
   fillForm(null);
   highlightSelectedCard();
+  editorLayout?.classList.remove("is-hidden");
 }
 
 deleteProjectButton?.addEventListener("click", () => {
@@ -182,12 +191,14 @@ editorGrid?.addEventListener("click", (event) => {
     return;
   }
 
+  isEditing = true;
   const cards = [...editorGrid.querySelectorAll(".project-card:not(.add-project-card)")];
   const index = cards.indexOf(card);
   selectedId = projects[index]?.id || selectedId;
   projectSelect.value = selectedId;
   fillForm(currentProject());
   highlightSelectedCard();
+  editorLayout?.classList.remove("is-hidden");
 });
 
 editorGrid?.addEventListener("keydown", (event) => {
