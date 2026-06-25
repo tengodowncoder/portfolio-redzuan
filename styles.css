@@ -174,30 +174,6 @@ img {
   filter: saturate(0.94) contrast(1);
 }
 
-.availability-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  min-height: 46px;
-  margin-top: -30px;
-  padding: 10px 18px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 16px 40px rgba(23, 32, 51, 0.12);
-  color: var(--ink);
-  font-size: 0.92rem;
-  font-weight: 850;
-}
-
-.availability-badge span {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #18c964;
-  box-shadow: 0 0 0 5px rgba(24, 201, 100, 0.14);
-}
-
 .eyebrow {
   margin: 0 0 12px;
   color: var(--coral);
@@ -359,6 +335,8 @@ h3 {
 }
 
 .project-card {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -527,6 +505,9 @@ h3 {
 }
 
 .project-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 24px;
 }
 
@@ -538,10 +519,15 @@ h3 {
   text-transform: uppercase;
 }
 
+.project-card-bottom {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
 .tags {
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .rating-summary {
@@ -549,7 +535,7 @@ h3 {
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 0;
   padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 8px;

@@ -128,8 +128,10 @@ function projectCardTemplate(project) {
         <p class="project-type">${escapeHtml(project.type)}</p>
         <h3>${escapeHtml(project.title)}</h3>
         <p>${escapeHtml(project.description)}</p>
-        ${ratingHtml}
-        <div class="tags">${tags}</div>
+        <div class="project-card-bottom">
+          ${ratingHtml}
+          <div class="tags">${tags}</div>
+        </div>
       </div>
     </article>
   `;
