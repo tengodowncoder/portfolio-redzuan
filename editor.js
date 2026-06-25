@@ -7,7 +7,6 @@ const projectSelect = document.querySelector("#project-select");
 const imageUpload = document.querySelector("#image-upload");
 const preview = document.querySelector("#card-preview");
 const editorGrid = document.querySelector("#editor-project-grid");
-const newProjectButton = document.querySelector("#new-project");
 const deleteProjectButton = document.querySelector("#delete-project");
 const resetButton = document.querySelector("#reset-projects");
 
@@ -67,11 +66,19 @@ function renderAll() {
   populateSelect();
   fillForm(projects.find((project) => project.id === selectedId));
   renderProjectGrid(editorGrid, projects);
+  editorGrid?.insertAdjacentHTML(
+    "beforeend",
+    `<article class="project-card add-project-card" role="button" tabindex="0" aria-label="Tambah project baru">
+      <div class="add-icon" aria-hidden="true">+</div>
+      <h3>Tambah Project Baru</h3>
+      <p>Klik untuk kosongkan form dan isi card baru.</p>
+    </article>`,
+  );
   highlightSelectedCard();
 }
 
 function highlightSelectedCard() {
-  editorGrid?.querySelectorAll(".project-card").forEach((card, index) => {
+  editorGrid?.querySelectorAll(".project-card:not(.add-project-card)").forEach((card, index) => {
     const isSelected = projects[index]?.id === selectedId;
     card.classList.toggle("selected", isSelected);
     card.tabIndex = 0;
@@ -144,12 +151,12 @@ form?.addEventListener("submit", (event) => {
   renderAll();
 });
 
-newProjectButton?.addEventListener("click", () => {
+function startNewProject() {
   selectedId = "";
   populateSelect();
   fillForm(null);
   highlightSelectedCard();
-});
+}
 
 deleteProjectButton?.addEventListener("click", () => {
   if (!selectedId || projects.length <= 1) return;
@@ -169,7 +176,14 @@ resetButton?.addEventListener("click", () => {
 editorGrid?.addEventListener("click", (event) => {
   const card = event.target.closest(".project-card");
   if (!card) return;
-  const index = [...editorGrid.querySelectorAll(".project-card")].indexOf(card);
+
+  if (card.classList.contains("add-project-card")) {
+    startNewProject();
+    return;
+  }
+
+  const cards = [...editorGrid.querySelectorAll(".project-card:not(.add-project-card)")];
+  const index = cards.indexOf(card);
   selectedId = projects[index]?.id || selectedId;
   projectSelect.value = selectedId;
   fillForm(currentProject());

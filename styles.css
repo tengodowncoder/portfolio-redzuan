@@ -704,6 +704,39 @@ h3 {
     0 22px 58px rgba(23, 32, 51, 0.14);
 }
 
+.add-project-card {
+  display: grid;
+  min-height: 100%;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  padding: 34px;
+  text-align: center;
+  border-style: dashed;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(238, 245, 239, 0.76)),
+    var(--surface);
+}
+
+.add-project-card .add-icon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  background: var(--ink);
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.add-project-card p {
+  max-width: 220px;
+  margin: 0;
+  color: var(--muted);
+}
+
 .editor-nav {
   align-items: center;
 }
