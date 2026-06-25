@@ -82,7 +82,7 @@ function openProjectModal(projectId) {
       </div>
     </div>
     <div class="modal-detail">
-      <h3>Detail sistem</h3>
+      <h3>Detail penuh</h3>
       <p>${escapeHtml(project.details || project.description)}</p>
     </div>
     <div class="modal-comments">

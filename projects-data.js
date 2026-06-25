@@ -76,7 +76,16 @@ const defaultProjects = [
 function readStoredProjects() {
   try {
     const storedProjects = JSON.parse(localStorage.getItem(PROJECT_STORAGE_KEY) || "null");
-    return Array.isArray(storedProjects) ? storedProjects : defaultProjects;
+    if (!Array.isArray(storedProjects)) return defaultProjects;
+
+    return storedProjects.map((project) => {
+      const defaultProject = defaultProjects.find((item) => item.id === project.id);
+      return {
+        ...defaultProject,
+        ...project,
+        details: project.details || defaultProject?.details || project.description || "",
+      };
+    });
   } catch {
     return defaultProjects;
   }
