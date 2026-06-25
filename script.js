@@ -98,12 +98,12 @@ function formatDetailText(value) {
         return item ? `<li>${escapeHtml(item)}</li>` : "";
       }
 
-      if (/^\d+\.\s+Modul/.test(cleanLine)) {
+      if (/^\d+\.\s+/.test(cleanLine)) {
         return `<h4>${escapeHtml(cleanLine)}</h4>`;
       }
 
       if (
-        /^(Objektif Sistem|Teknologi Digunakan|UI Components|Audit Trail|Modul Utama Sistem|Project Description|Key Features|Tools & Technologies|Role & Responsibilities)$/.test(
+        /^(Objektif Sistem|Teknologi Digunakan|UI Components|Audit Trail|Modul Utama Sistem|Project Summary|Tech Stack|Project Description|Key Features|Tools & Technologies|Role & Responsibilities|Workflow|My Role|Portfolio Paragraph)$/.test(
           cleanLine,
         )
       ) {
@@ -145,6 +145,9 @@ function openProjectModal(projectId) {
   activeProjectId = projectId;
   const tags = (project.tags || []).map((tag) => `<span>${escapeHtml(tag)}</span>`).join("");
   const fit = project.imageFit === "cover" ? "cover" : "contain";
+  const link = project.link
+    ? `<a class="project-link" href="${escapeHtml(project.link)}" target="_blank" rel="noreferrer">View GitHub</a>`
+    : "";
 
   modalContent.innerHTML = `
     <div class="modal-hero">
@@ -159,6 +162,7 @@ function openProjectModal(projectId) {
         <h2 id="modal-title">${escapeHtml(project.title)}</h2>
         <p>${escapeHtml(project.description)}</p>
         <div class="tags">${tags}</div>
+        ${link}
       </div>
     </div>
     <div class="modal-detail">
