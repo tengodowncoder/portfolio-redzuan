@@ -36,11 +36,11 @@ const defaultProjects = [
     imageAlt: "Paparan Social Media Monitoring Dashboard",
     imageFit: "contain",
     type: "Data Dashboard",
-    title: "Social Media Monitoring Dashboard",
+    title: "Social Media Activity Monitoring Dashboard",
     description:
       "Dashboard Looker Studio untuk memantau posting JNN/JNC, platform, jenis kandungan, dan tahap engagement.",
     details:
-      "Dashboard ini menghubungkan Google Sheets dengan Looker Studio untuk memantau aktiviti posting media sosial. Ia menyediakan scorecard, filter, carta, jadual posting, kategori engagement, dan paparan ringkas untuk memudahkan pemantauan pengurusan.",
+      "Project Description\nDeveloped an interactive Looker Studio dashboard to monitor and analyze social media posting activities for JNN/JNC units. The dashboard visualizes posting frequency, platform usage, content types, engagement levels, and reporting status based on data collected through Google Forms and Google Sheets.\n\nKey Features\n• Integrated Google Forms responses with Google Sheets as the main data source.\n• Built interactive filters for date, JNN/JNC unit, platform, and content type.\n• Displayed key metrics such as total postings, active reporting units, main platform, and engagement level.\n• Visualized posting distribution by unit, content category, platform, and likes/reactions level.\n• Identified JNN/JNC units that had submitted reports and units with no records.\n• Created a simple monitoring view for management reporting and presentation purposes.\n\nTools & Technologies\n• Looker Studio\n• Google Sheets\n• Google Forms\n• Data Visualization\n• Dashboard Design\n• Data Cleaning\n• Reporting Analytics\n\nRole & Responsibilities\n• Designed the dashboard layout and reporting structure.\n• Cleaned and organized raw social media activity data.\n• Created calculated fields for engagement level ordering and reporting analysis.\n• Built charts, scorecards, tables, filters, and date range controls.\n• Prepared simplified insights for management-level presentation.",
     tags: ["Looker Studio", "Google Sheets", "Reporting"],
   },
   {

@@ -102,7 +102,11 @@ function formatDetailText(value) {
         return `<h4>${escapeHtml(cleanLine)}</h4>`;
       }
 
-      if (/^(Objektif Sistem|Teknologi Digunakan|UI Components|Audit Trail|Modul Utama Sistem)$/.test(cleanLine)) {
+      if (
+        /^(Objektif Sistem|Teknologi Digunakan|UI Components|Audit Trail|Modul Utama Sistem|Project Description|Key Features|Tools & Technologies|Role & Responsibilities)$/.test(
+          cleanLine,
+        )
+      ) {
         return `<h4>${escapeHtml(cleanLine)}</h4>`;
       }
 
