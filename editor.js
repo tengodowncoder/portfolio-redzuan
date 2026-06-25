@@ -63,6 +63,17 @@ function renderAll() {
   populateSelect();
   fillForm(currentProject());
   renderProjectGrid(editorGrid, projects);
+  highlightSelectedCard();
+}
+
+function highlightSelectedCard() {
+  editorGrid?.querySelectorAll(".project-card").forEach((card, index) => {
+    const isSelected = projects[index]?.id === selectedId;
+    card.classList.toggle("selected", isSelected);
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label", `Edit ${projects[index]?.title || "project"}`);
+  });
 }
 
 function resizeImageFile(file) {
@@ -161,6 +172,24 @@ resetButton?.addEventListener("click", () => {
   selectedId = projects[0].id;
   saveStoredProjects(projects);
   renderAll();
+});
+
+editorGrid?.addEventListener("click", (event) => {
+  const card = event.target.closest(".project-card");
+  if (!card) return;
+  const index = [...editorGrid.querySelectorAll(".project-card")].indexOf(card);
+  selectedId = projects[index]?.id || selectedId;
+  projectSelect.value = selectedId;
+  fillForm(currentProject());
+  highlightSelectedCard();
+});
+
+editorGrid?.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  const card = event.target.closest(".project-card");
+  if (!card) return;
+  event.preventDefault();
+  card.click();
 });
 
 renderAll();
