@@ -47,8 +47,8 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 18px clamp(18px, 4vw, 64px);
-  background: rgba(251, 248, 241, 0.88);
+  padding: 14px clamp(18px, 4vw, 64px);
+  background: rgba(251, 248, 241, 0.9);
   border-bottom: 1px solid rgba(221, 231, 225, 0.8);
   backdrop-filter: blur(14px);
 }
@@ -65,25 +65,31 @@ img {
 .brand {
   gap: 10px;
   font-weight: 800;
+  color: var(--ink);
 }
 
 .brand-mark {
   display: grid;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   place-items: center;
   color: white;
   background: var(--ink);
   border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(23, 32, 51, 0.14);
   font-size: 0.88rem;
 }
 
 .site-nav {
-  gap: 8px;
+  gap: 4px;
+  padding: 5px;
+  border: 1px solid rgba(221, 231, 225, 0.86);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.54);
 }
 
 .site-nav a {
-  padding: 10px 14px;
+  padding: 9px 13px;
   border-radius: 8px;
   color: var(--muted);
   font-weight: 700;
@@ -93,7 +99,8 @@ img {
 .site-nav a:hover,
 .site-nav a:focus-visible {
   color: var(--ink);
-  background: #eef5ef;
+  background: white;
+  box-shadow: 0 8px 22px rgba(23, 32, 51, 0.08);
 }
 
 .nav-toggle {
@@ -318,14 +325,29 @@ h3 {
 }
 
 .section-heading {
+  position: relative;
   max-width: 730px;
   margin: 0 auto 36px;
   text-align: center;
 }
 
+.section-heading::after {
+  content: "";
+  display: block;
+  width: 84px;
+  height: 4px;
+  margin: 22px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--teal), var(--coral));
+}
+
 .section-heading.align-left {
   margin: 0;
   text-align: left;
+}
+
+.section-heading.align-left::after {
+  margin-left: 0;
 }
 
 .project-grid {
