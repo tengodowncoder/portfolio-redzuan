@@ -298,6 +298,19 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: 0 18px 50px rgba(23, 32, 51, 0.08);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.project-card:hover,
+.project-card:focus-visible {
+  border-color: rgba(23, 190, 187, 0.72);
+  box-shadow: 0 24px 64px rgba(23, 32, 51, 0.14);
+  outline: 0;
+  transform: translateY(-2px);
 }
 
 .project-shot {
@@ -588,7 +601,8 @@ h3 {
 }
 
 .feedback-form input,
-.feedback-form textarea {
+.feedback-form textarea,
+.feedback-form select {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -603,9 +617,36 @@ h3 {
 }
 
 .feedback-form input:focus,
-.feedback-form textarea:focus {
+.feedback-form textarea:focus,
+.feedback-form select:focus {
   border-color: var(--teal);
   outline: 3px solid rgba(23, 190, 187, 0.16);
+}
+
+.rating-field {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.rating-field input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.rating-field label {
+  color: #cad3cf;
+  cursor: pointer;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.rating-field label:hover,
+.rating-field label:hover ~ label,
+.rating-field input:checked ~ label {
+  color: var(--gold);
 }
 
 .feedback-form .button {
@@ -798,6 +839,103 @@ h3 {
   font-weight: 800;
 }
 
+.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: none;
+}
+
+.modal.open {
+  display: block;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(23, 32, 51, 0.54);
+}
+
+.modal-panel {
+  position: relative;
+  width: min(980px, calc(100% - 28px));
+  max-height: calc(100vh - 36px);
+  margin: 18px auto;
+  overflow: auto;
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 30px 90px rgba(23, 32, 51, 0.28);
+}
+
+.modal-close {
+  position: sticky;
+  top: 14px;
+  z-index: 2;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  margin: 14px 14px -56px auto;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.94);
+  cursor: pointer;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+#modal-content {
+  padding: 28px;
+}
+
+.modal-hero {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.modal-hero .project-shot {
+  height: 280px;
+}
+
+.modal-detail,
+.modal-comments {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.modal-detail p,
+.empty-comments,
+.comment-item p {
+  color: var(--muted);
+}
+
+.comment-item {
+  display: grid;
+  gap: 8px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.comment-item:last-child {
+  border-bottom: 0;
+}
+
+.comment-stars span {
+  color: #cad3cf;
+}
+
+.comment-stars span.active {
+  color: var(--gold);
+}
+
 @media (max-width: 900px) {
   .split,
   .contact,
@@ -816,6 +954,10 @@ h3 {
   .project-grid,
   .stats,
   .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-hero {
     grid-template-columns: 1fr;
   }
 

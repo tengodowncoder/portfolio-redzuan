@@ -11,6 +11,8 @@ const defaultProjects = [
     title: "e-Nazir MyClaim System",
     description:
       "Sistem tuntutan elaun dan pemantauan bajet untuk mendigitalkan proses claim manual di Jemaah Nazir.",
+    details:
+      "Sistem ini dibina untuk memusatkan proses tuntutan elaun, memudahkan semakan kewangan, dan memberi paparan bajet secara lebih jelas kepada pengguna dalaman. Fokus utama projek ialah workflow tuntutan, role-based access, dashboard perbelanjaan, dan migrasi data daripada format manual kepada database yang lebih tersusun.",
     tags: ["Django", "Bootstrap 5", "Chart.js"],
   },
   {
@@ -23,6 +25,8 @@ const defaultProjects = [
     title: "Sistem Tempahan Kenderaan JN",
     description:
       "Aplikasi tempahan kenderaan dengan Google OAuth, kelulusan admin, assignment pemandu, laporan, dan audit log.",
+    details:
+      "Sistem ini membantu pengguna membuat permohonan kenderaan, manakala admin boleh meluluskan permohonan, menetapkan kenderaan dan pemandu, menyemak kalendar tempahan, serta menghasilkan laporan. Projek ini menekankan aliran kerja yang boleh dijejak, akses mengikut peranan, dan dokumentasi UAT.",
     tags: ["Laravel", "Supabase", "RBAC"],
   },
   {
@@ -35,6 +39,8 @@ const defaultProjects = [
     title: "Social Media Monitoring Dashboard",
     description:
       "Dashboard Looker Studio untuk memantau posting JNN/JNC, platform, jenis kandungan, dan tahap engagement.",
+    details:
+      "Dashboard ini menghubungkan Google Sheets dengan Looker Studio untuk memantau aktiviti posting media sosial. Ia menyediakan scorecard, filter, carta, jadual posting, kategori engagement, dan paparan ringkas untuk memudahkan pemantauan pengurusan.",
     tags: ["Looker Studio", "Google Sheets", "Reporting"],
   },
   {
@@ -47,6 +53,8 @@ const defaultProjects = [
     title: "Email-to-Telegram Notification",
     description:
       "Workflow n8n yang memantau Gmail melalui IMAP dan menghantar notifikasi Telegram secara real-time.",
+    details:
+      "Automasi ini menggunakan n8n, Gmail IMAP, dan Telegram Bot API untuk memantau email masuk dan menghantar alert terus ke Telegram. Workflow dikonfigurasi supaya mesej kekal unread dan attachment tidak dimuat turun bagi mengurangkan risiko pengendalian fail.",
     tags: ["n8n", "Gmail IMAP", "Telegram API"],
   },
   {
@@ -59,6 +67,8 @@ const defaultProjects = [
     title: "Personal Portfolio Website",
     description:
       "Deployed a static portfolio website using GitHub and Vercel with automatic deployment triggered by Git commits.",
+    details:
+      "Portfolio ini dibina sebagai static website dan dideploy melalui GitHub serta Vercel. Setiap perubahan yang dipush ke repository akan trigger deployment automatik, menjadikan proses update portfolio lebih cepat dan tersusun.",
     tags: ["GitHub", "Vercel", "CI/CD"],
   },
 ];
@@ -93,7 +103,7 @@ function projectCardTemplate(project) {
   const fit = project.imageFit === "cover" ? "cover" : "contain";
 
   return `
-    <article class="project-card">
+    <article class="project-card" data-project-id="${escapeHtml(project.id)}" tabindex="0" role="button" aria-label="Lihat detail ${escapeHtml(project.title)}">
       <div class="project-shot screenshot">
         <span>${escapeHtml(project.badge || "Project")}</span>
         <figure>
