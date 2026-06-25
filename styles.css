@@ -367,8 +367,8 @@ h3 {
 }
 
 .project-shot.portfolio-preview img {
-  object-fit: cover;
-  object-position: left top;
+  object-fit: contain;
+  object-position: center;
 }
 
 .project-content {
