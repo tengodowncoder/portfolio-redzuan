@@ -43,3 +43,26 @@ const counterObserver = new IntersectionObserver(
 );
 
 counters.forEach((counter) => counterObserver.observe(counter));
+
+const feedbackForm = document.querySelector("#feedback-form");
+const feedbackNote = document.querySelector("#feedback-note");
+
+feedbackForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(feedbackForm);
+  const name = String(formData.get("name") || "").trim();
+  const email = String(formData.get("email") || "").trim();
+  const message = String(formData.get("message") || "").trim();
+
+  const subject = encodeURIComponent(`Portfolio feedback from ${name}`);
+  const body = encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\n\nFeedback:\n${message}`,
+  );
+
+  window.location.href = `mailto:redzuanchrls@gmail.com?subject=${subject}&body=${body}`;
+
+  if (feedbackNote) {
+    feedbackNote.textContent = "Email client sedang dibuka. Terima kasih untuk feedback anda.";
+  }
+});

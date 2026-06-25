@@ -29,6 +29,7 @@
         <a href="#skills">Skills</a>
         <a href="#experience">Pengalaman</a>
         <a href="#education">Pendidikan</a>
+        <a href="#feedback">Feedback</a>
         <a href="#contact">Hubungi</a>
       </nav>
     </header>
@@ -268,6 +269,38 @@
             <span>MUET Band 3</span>
           </article>
         </div>
+      </section>
+
+      <section class="section feedback-section" id="feedback">
+        <div class="section-heading">
+          <p class="eyebrow">Feedback</p>
+          <h2>Tinggalkan maklum balas</h2>
+          <p>
+            Ada cadangan, peluang kerja, atau komen tentang portfolio ini? Saya hargai
+            setiap input yang boleh bantu saya tambah baik.
+          </p>
+        </div>
+
+        <form class="feedback-form" id="feedback-form">
+          <div class="field-row">
+            <label>
+              <span>Nama</span>
+              <input type="text" name="name" placeholder="Nama anda" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="email@example.com" required />
+            </label>
+          </div>
+          <label>
+            <span>Maklum balas</span>
+            <textarea name="message" rows="5" placeholder="Tulis mesej anda di sini..." required></textarea>
+          </label>
+          <button class="button primary" type="submit">Hantar Feedback</button>
+          <p class="form-note" id="feedback-note" aria-live="polite">
+            Form ini akan buka email client anda dengan mesej yang sudah disediakan.
+          </p>
+        </form>
       </section>
 
       <section class="contact" id="contact">
