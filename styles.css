@@ -321,11 +321,19 @@ h3 {
 }
 
 .project-shot.screenshot span {
-  display: block;
-  width: 68%;
-  height: 24px;
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 24px;
+  align-items: center;
+  padding: 4px 12px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 850;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .project-shot.screenshot figure {
