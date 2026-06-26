@@ -148,7 +148,19 @@ img {
 .hero-copy {
   position: relative;
   z-index: 2;
-  max-width: 680px;
+  max-width: 760px;
+  padding-left: 18px;
+}
+
+.hero-copy::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  bottom: 8px;
+  left: 0;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--coral), var(--teal), rgba(255, 207, 90, 0.92));
 }
 
 .hero-portrait {
@@ -190,6 +202,17 @@ img {
   text-transform: uppercase;
 }
 
+.hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 107, 74, 0.22);
+  border-radius: 8px;
+  background: rgba(255, 107, 74, 0.08);
+  box-shadow: 0 12px 30px rgba(255, 107, 74, 0.08);
+}
+
 h1,
 h2,
 h3,
@@ -209,6 +232,16 @@ h1 {
   max-width: 850px;
 }
 
+.hero h1 {
+  max-width: 780px;
+  font-size: 4.55rem;
+  line-height: 1.02;
+}
+
+.hero h1 span {
+  background: linear-gradient(180deg, transparent 60%, rgba(23, 190, 187, 0.2) 60%);
+}
+
 h2 {
   font-size: clamp(2rem, 3.1rem, 3.6rem);
 }
@@ -219,15 +252,41 @@ h3 {
 
 .hero-text {
   max-width: 620px;
-  margin: 24px 0 0;
+  margin: 26px 0 0;
   color: var(--muted);
-  font-size: clamp(1.03rem, 1.16rem, 1.24rem);
+  font-size: 1.1rem;
+  line-height: 1.78;
+}
+
+.hero-text strong {
+  color: var(--ink);
+}
+
+.hero-focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hero-focus span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid rgba(221, 231, 225, 0.92);
+  border-radius: 8px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 10px 26px rgba(23, 32, 51, 0.06);
+  font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .hero-actions {
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 34px;
+  margin-top: 30px;
 }
 
 .button {
@@ -244,10 +303,11 @@ h3 {
 .button.primary {
   color: white;
   background: var(--ink);
+  box-shadow: 0 16px 34px rgba(23, 32, 51, 0.16);
 }
 
 .button.secondary {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.74);
 }
 
 .button:hover {
@@ -1141,6 +1201,10 @@ h3 {
       #fbf8f1;
   }
 
+  .hero h1 {
+    font-size: 3.45rem;
+  }
+
   .project-grid,
   .stats,
   .field-row {
@@ -1163,6 +1227,14 @@ h3 {
 @media (max-width: 620px) {
   h1 {
     font-size: 2.75rem;
+  }
+
+  .hero-copy {
+    padding-left: 14px;
+  }
+
+  .hero h1 {
+    font-size: 2.72rem;
   }
 
   h2 {
